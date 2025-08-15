@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>I Laurence Ortega • Virtual Assistant – Admin & CRM</title>
+  <meta name="description" content="Virtual Assistant portfolio specializing in administrative tasks, CRM management, and automation. Responsive, animated, and fast." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220; /* slate-950-ish */
+      --bg-2:#0f172a; /* slate-900 */
+      --card:#0f1b33cc; /* translucent */
+      --muted:#94a3b8; /* slate-400 */
+      --text:#e5e7eb; /* slate-200 */
+      --white:#ffffff;
+      --ring:rgba(255,255,255,0.12);
+      --primary:#38bdf8; /* sky-400 */
+      --primary-2:#818cf8; /* indigo-400 */
+      --accent:#f472b6; /* pink-400 */
+      --shadow:0 10px 30px rgba(2,8,23,0.6);
+      --radius:18px;
+      --radius-lg:22px;
+      --radius-xl:26px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background: linear-gradient(180deg,#070b14, #0b1220 25%, #0b1220 60%, #070b14);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Layout helpers */
+    .container{max-width:1120px;margin:0 auto;padding:0 1rem}
+    .section{padding:4rem 0}
+    @media (min-width:768px){.section{padding:6rem 0}}
+
+    /* Top nav */
+    header{position:sticky;top:0;z-index:50;background:rgba(10,15,28,0.4);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}
+    .brandMark{width:34px;height:34px;display:grid;place-items:center;border-radius:12px;background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.35)}
+    .navLinks{display:none;gap:1.25rem;color:#cbd5e1}
+    .cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary);color:#0a0f1c;padding:.55rem .9rem;border-radius:14px;font-weight:700;box-shadow:0 10px 24px rgba(56,189,248,.25);}
+    @media (min-width:768px){.navLinks{display:flex}}
+
+    /* Hero */
+    .grid{display:grid;gap:2rem}
+    @media (min-width:768px){.grid-2{grid-template-columns:1.15fr .85fr}}
+
+    .pill{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--ring);color:#cbd5e1;background:#0b1220b3;border-radius:999px;padding:.35rem .6rem;font-size:.74rem}
+    .h1{font-weight:800;line-height:1.05;font-size:2.2rem}
+    @media (min-width:640px){.h1{font-size:3rem}}
+    .heroImg{position:relative;border-radius:24px;padding:.5rem;background:linear-gradient(135deg,#0b1a32,#0c1a30);border:1px solid rgba(255,255,255,0.08);box-shadow:var(--shadow)}
+    .heroImg img{height:22rem;object-fit:cover;border-radius:18px}
+    @media (min-width:768px){.heroImg img{height:28rem}}
+    .badge{position:absolute;left:14px;bottom:14px;background:#050812b3;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.45rem .6rem;font-size:.72rem;}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--ring);background:rgba(255,255,255,0.06);padding:.6rem .9rem;border-radius:14px;font-weight:600}
+    .btnPrimary{background:var(--primary);color:#0a0f1c;border:none;box-shadow:0 10px 24px rgba(56,189,248,.25)}
+
+    /* Cards */
+    .cards{display:grid;grid-template-columns:1fr;gap:1rem}
+    @media (min-width:640px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:1024px){.cards{grid-template-columns:repeat(3,1fr)}}
+    .card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:22px;padding:1.1rem;box-shadow:var(--shadow)}
+    .cardTitle{font-weight:700;margin:.35rem 0 .25rem}
+    .muted{color:var(--muted);font-size:.95rem}
+
+    /* Tools grid */
+    .tools{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    @media (min-width:640px){.tools{grid-template-columns:repeat(3,1fr)}}
+    @media (min-width:900px){.tools{grid-template-columns:repeat(4,1fr)}}
+    .tool{display:flex;align-items:center;gap:.8rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:.9rem;border-radius:18px;transition:transform .2s ease, background .2s ease}
+    .tool:hover{transform:translateY(-3px);background:rgba(255,255,255,0.07)}
+    .toolLogo{width:44px;height:44px;border-radius:12px;overflow:hidden;background:#fff;display:grid;place-items:center}
+    .toolLogo img{max-height:28px;padding:6px}
+
+    /* Work cards */
+    .workGrid{display:grid;grid-template-columns:1fr;gap:1rem}
+    @media (min-width:640px){.workGrid{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:1024px){.workGrid{grid-template-columns:repeat(3,1fr)}}
+    .work{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+    .work img{height:190px;object-fit:cover;transition:transform .6s ease}
+    .work:hover img{transform:scale(1.06)}
+    .tag{display:inline-block;font-size:.72rem;padding:.25rem .55rem;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#cbd5e1;margin-right:.35rem;margin-top:.35rem}
+
+
+    /* Contact */
+    form{display:grid;gap:.9rem}
+    input, textarea{width:100%;background:rgba(2,6,23,.55);border:1px solid rgba(255,255,255,.1);color:var(--text);padding:.7rem .9rem;border-radius:14px;font:inherit;outline:none;transition:box-shadow .2s ease,border-color .2s ease}
+    input:focus, textarea:focus{border-color:rgba(56,189,248,.5);box-shadow:0 0 0 4px rgba(56,189,248,.2)}
+    textarea{min-height:130px;resize:vertical}
+    .notice{font-size:.72rem;color:#9aa7bd;text-align:center}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.08);text-align:center;padding:2rem 1rem;color:#9aa7bd}
+
+    /* Animations */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:none}
+    .fadeIn{opacity:0;animation:fadeIn .8s ease forwards}
+    @keyframes fadeIn{to{opacity:1}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <span class="brandMark">⚡</span>
+        <span>VA • Admin & CRM</span>
+      </a>
+      <nav class="navLinks">
+        <a href="#services">Services</a>
+        <a href="#tools">Tools</a>
+        <a href="#work">Work</a>
+        <a href="https://www.facebook.com/laurence.ortega.393">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="section">
+    <div class="container grid grid-2">
+      <div class="reveal" data-animate>
+        <span class="pill">🔒 Trustworthy • 🚀 Proactive • ✅ Reliable</span>
+        <h1 class="h1" style="margin:.6rem 0 0">Your Virtual Assistant for <span style="background:linear-gradient(90deg,var(--primary),var(--primary-2));-webkit-background-clip:text;background-clip:text;color:transparent">Administrative</span> & <span style="background:linear-gradient(90deg,#f0abfc,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">CRM</span></h1>
+        <p class="muted" style="max-width:40ch;margin:1rem 0 1.2rem">I streamline calendars, inboxes, and CRMs like HubSpot and AI like ChatGPT. Expect clean data, fast responses, and beautifully automated workflows.</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <a class="btn" href="#work">See sample work →</a>
+        </div>
+        <div class="muted" style="margin-top:.9rem;font-size:.9rem">★ 100% remote • Available for part-time or project-based</div>
+      </div>
+      <div class="reveal" data-animate>
+        <div class="heroImg">
+          <img alt="Professional portrait" src="images/pic.png" />
+          <div class="badge">
+            <div style="font-weight:700">I Laurence Ortega</div>
+            <div style="color:#9aa7bd">Virtual Assistant • Admin & CRM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="reveal" data-animate style="font-size:2rem;font-weight:800">What I do</h2>
+      <div class="cards" style="margin-top:1.2rem">
+        <article class="card reveal" data-animate>
+        
+          <h3 class="cardTitle">Administrative Ops</h3>
+          <p class="muted">Calendar, inbox triage, travel bookings, SOPs, file organization, meeting notes & follow-ups.</p>
+        </article>
+        <article class="card reveal" data-animate>
+          
+          <h3 class="cardTitle">CRM Management</h3>
+          <p class="muted">HubSpot setup, data hygiene, contact organization, lead tracking, reports & dashboards.</p>
+        </article>
+        <article class="card reveal" data-animate>
+
+          <h3 class="cardTitle">Automation</h3>
+          <p class="muted">Make integrations, lead capture, enrichment, alerts, and routine task automation.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools" class="section">
+    <div class="container">
+      <h2 class="reveal" data-animate style="font-size:2rem;font-weight:800">Tools I Used</h2>
+      <p class="muted reveal" data-animate>Some experience and know to navigate across CRM and productivity stacks.</p>
+      <div class="tools" style="margin-top:1rem">
+        <!-- Each tool item -->
+        <a class="tool reveal" data-animate href="#" title="HubSpot">
+          <span class="toolLogo"><img src="images/hub.jpg" alt="HubSpot logo"></span>
+          <div><div style="font-weight:600">HubSpot</div><div class="muted" style="font-size:.8rem">Admin • CRM • Automation</div></div>
+        </a>
+        <a class="tool reveal" data-animate href="#" title="Salesforce">
+          <span class="toolLogo"><img src="images/chat.png" alt="Salesforce logo"></span>
+          <div><div style="font-weight:600">ChatGPT</div><div class="muted" style="font-size:.8rem">Ideas • Research • Drafts</div></div>
+        </a>
+        <a class="tool reveal" data-animate href="#" title="Notion">
+          <span class="toolLogo"><img src="images/microsoft.svg.png" alt="Microsoft Office logo"></span>
+          <div><div style="font-weight:600">Microsoft Office</div><div class="muted" style="font-size:.8rem">Docs • Reports</div></div>
+        </a>
+        <a class="tool reveal" data-animate href="#" title="Google Workspace">
+          <span class="toolLogo"><img src="images/gwork.jpg" alt="Google Docs icon"></span>
+          <div><div style="font-weight:600">Google Workspace</div><div class="muted" style="font-size:.8rem">Emais • Sheets • Meet</div></div>
+        </a>
+        <a class="tool reveal" data-animate href="#" title="Trello">
+          <span class="toolLogo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Trello-logo-blue.svg" alt="Trello logo"></span>
+          <div><div style="font-weight:600">Trello</div><div class="muted" style="font-size:.8rem">Boards • Tasks</div></div>
+        </a>
+        <a class="tool reveal" data-animate href="#" title="Asana">
+          <span class="toolLogo"><img src="images/asana.png" alt="Asana logo"></span>
+          <div><div style="font-weight:600">Asana</div><div class="muted" style="font-size:.8rem">Projects • Sprints</div></div>
+        </a>
+        <a class="tool reveal" data-animate href="#" title="Asana">
+          <span class="toolLogo"><img src="images/canva.jpg" alt="Canva logo"></span>
+          <div><div style="font-weight:600">Canva</div><div class="muted" style="font-size:.8rem">Layouts • Visual Framework</div></div>
+        </a>
+        <a class="tool reveal" data-animate href="#" title="Slack">
+          <span class="toolLogo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png" alt="Slack logo"></span>
+          <div><div style="font-weight:600">Slack</div><div class="muted" style="font-size:.8rem">Comms • Huddles</div></div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="section">
+    <div class="container">
+      <h2 class="reveal" data-animate style="font-size:2rem;font-weight:800">Sample work</h2>
+      <div class="workGrid" style="margin-top:1rem">
+        <article class="work reveal" data-animate>
+          <img src="images/dash.jpg" style="background-size: cover;" alt="HubSpot dashboard mockup" />
+          <div style="padding:1rem">
+            <h3 style="margin:.1rem 0 .4rem">Executive Dashboard in HubSpot</h3>
+            <p class="muted">Built a C‑suite dashboard with lifecycle stages, MQL velocity, and pipeline health. Reduced reporting time by 80%.</p>
+            <div>
+              <span class="tag">HubSpot</span>
+              <span class="tag">Automation</span>
+              <span class="tag">KPI</span>
+            </div>
+          </div>
+        </article>
+        <article class="work reveal" data-animate>
+          <img src="images/sa.jpg" alt="Microsoft Office Suite" />
+          <div style="padding:1rem">
+            <h3 style="margin:.1rem 0 .4rem">Microsoft Office Suite</h3>
+            <p class="muted">Created dynamic Excel dashboards and reports, designed professional Word documents, and developed engaging PowerPoint presentations.</p>
+            <div>
+              <span class="tag">Drafting</span>
+              <span class="tag">Presentations</span>
+              <span class="tag">Sheets</span>
+            </div>
+          </div>
+        </article>
+        <article class="work reveal" data-animate>
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1400&auto=format&fit=crop" alt="Airtable automation" />
+          <div style="padding:1rem">
+            <h3 style="margin:.1rem 0 .4rem">Automated Email Scheduling</h3>
+            <p class="muted">Optimized team communication and scheduling by creating automated Gmail filters, label organization, 
+              and shared Google Calendar workflows, improving response time and meeting coordination.</p>
+            <div>
+              <span class="tag">Collaboration</span>
+              <span class="tag">Workflow</span>
+              <span class="tag">Timeline</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+<!-- Contact Details Section -->
+<section id="contact-details" style="padding: 60px 20px; background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1); text-align: center;">
+  <h2 style="font-size: 2rem; margin-bottom: 20px; color: #f7d5d5;">Contact Details</h2>
+  
+  <div style="max-width: 500px; margin: 0 auto; text-align: left; font-size: 1rem; line-height: 1.8;">
+    <p><strong>📍 Address:</strong> Vida Grande Subdivision Pototan, Iloilo, Philippines</p>
+    <p><strong>📞 Phone:</strong> <a href="tel:09914413985" style="color: #e9dcdc; text-decoration: none;">09914413985</a></p>
+    <p><strong>📧 Email:</strong> <a href="ortegalaurence13@gmail.com" style="color: #e9dcdc; text-decoration: none;">ortegalaurence13@gmail.com</a></p>
+    <p><strong>🌐 Website:</strong> <a href="https://yourwebsite.com" target="_blank" style="color: #e9dcdc; text-decoration: none;">yourwebsite.com</a></p>
+  </div>
+  
+  <!-- Simple fade-in animation -->
+  <style>
+    #contact-details {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.2s;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</section>
+
+
+  <footer>© <span id="year"></span>I Laurence Ortega • Virtual Assistant • Admin & CRM</footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Intersection Observer to reveal elements on scroll (no libs)
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      })
+    },{threshold:0.12, rootMargin:"-60px"});
+    document.querySelectorAll('[data-animate]').forEach(el=>{
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+
+  </script>
+</body>
+</html>
